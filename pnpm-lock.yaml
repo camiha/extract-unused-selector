@@ -1,14 +1,12 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@types/css-tree': ^1.0.7
   '@types/glob': ^7.2.0
   '@types/jest': ^28.1.4
   '@types/jsdom': ^16.2.14
   '@types/node': ^18.0.1
   '@typescript-eslint/eslint-plugin': ^5.30.5
   '@typescript-eslint/parser': ^5.30.5
-  css-tree: ^2.1.0
   eslint: ^8.19.0
   eslint-config-airbnb-base: ^15.0.0
   eslint-config-airbnb-typescript: ^17.0.0
@@ -21,21 +19,19 @@ specifiers:
   jest-environment-jsdom: ^28.1.2
   jsdom: ^20.0.0
   prettier: ^2.7.1
-  rollup: ^2.76.0
   sass: ^1.53.0
+  string-extract-class-names: 6.1.0
   ts-jest: ^28.0.5
   ts-node: ^10.8.2
   typescript: ^4.7.4
 
 devDependencies:
-  '@types/css-tree': 1.0.7
   '@types/glob': 7.2.0
   '@types/jest': 28.1.5
   '@types/jsdom': 16.2.14
   '@types/node': 18.0.3
   '@typescript-eslint/eslint-plugin': 5.30.6_2vt5mtrqleafs33qg2bhpmbaqm
   '@typescript-eslint/parser': 5.30.6_4x5o4skxv6sl53vpwefgt23khm
-  css-tree: 2.1.0
   eslint: 8.19.0
   eslint-config-airbnb-base: 15.0.0_q2xwze32dd33a2fc2qubwr4ie4
   eslint-config-airbnb-typescript: 17.0.0_ut7zhdcngnabms2winrsux5kxi
@@ -48,8 +44,8 @@ devDependencies:
   jest-environment-jsdom: 28.1.2
   jsdom: 20.0.0
   prettier: 2.7.1
-  rollup: 2.76.0
   sass: 1.53.0
+  string-extract-class-names: 6.1.0
   ts-jest: 28.0.5_lt5llx2ti6zt4eclhanfli5ynu
   ts-node: 10.8.2_fxk5i3xm3ivo7fjwhcizcinpla
   typescript: 4.7.4
@@ -338,6 +334,13 @@ packages:
     dependencies:
       '@babel/core': 7.18.6
       '@babel/helper-plugin-utils': 7.18.6
+    dev: true
+
+  /@babel/runtime/7.18.6:
+    resolution: {integrity: sha512-t9wi7/AW6XtKahAe20Yw0/mMljKq0B1r2fPdvaAdV/KPDZewFXdaaa6K7lxmZBZ8FBNpCiAT6iHPmd6QO9bKfQ==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.13.9
     dev: true
 
   /@babel/template/7.18.6:
@@ -778,10 +781,6 @@ packages:
     resolution: {integrity: sha512-kVzjari1s2YVi77D3w1yuvohV2idweYXMCDzqBiVNN63TcDWrIlTVOYpqVrvbbyOE/IyzBoTKF0fdnLPEORFxA==}
     dependencies:
       '@babel/types': 7.18.8
-    dev: true
-
-  /@types/css-tree/1.0.7:
-    resolution: {integrity: sha512-Pz+DfVODpQTAV6PwPBK6kzyy7+f6EyPbr1+mYkc1YolJfl2NAJ4wbg0TC/AJPBsqn9jWfyiO19A/sgpvFLfqnw==}
     dev: true
 
   /@types/glob/7.2.0:
@@ -1418,14 +1417,6 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
-    dev: true
-
-  /css-tree/2.1.0:
-    resolution: {integrity: sha512-PcysZRzToBbrpoUrZ9qfblRIRf8zbEAkU0AIpQFtgkFK0vSbzOmBCvdSAx2Zg7Xx5wiYJKUKk0NMP7kxevie/A==}
-    engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
-    dependencies:
-      mdn-data: 2.0.27
-      source-map-js: 1.0.2
     dev: true
 
   /cssom/0.3.8:
@@ -3115,6 +3106,14 @@ packages:
       p-locate: 4.1.0
     dev: true
 
+  /lodash.clonedeep/4.5.0:
+    resolution: {integrity: sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==}
+    dev: true
+
+  /lodash.isplainobject/4.0.6:
+    resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
+    dev: true
+
   /lodash.memoize/4.1.2:
     resolution: {integrity: sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==}
     dev: true
@@ -3145,10 +3144,6 @@ packages:
     resolution: {integrity: sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==}
     dependencies:
       tmpl: 1.0.5
-    dev: true
-
-  /mdn-data/2.0.27:
-    resolution: {integrity: sha512-kwqO0I0jtWr25KcfLm9pia8vLZ8qoAKhWZuZMbneJq3jjBD3gl5nZs8l8Tu3ZBlBAHVQtDur9rdDGyvtfVraHQ==}
     dev: true
 
   /merge-stream/2.0.0:
@@ -3489,6 +3484,10 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /regenerator-runtime/0.13.9:
+    resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==}
+    dev: true
+
   /regexp.prototype.flags/1.4.3:
     resolution: {integrity: sha512-fjggEOO3slI6Wvgjwflkc4NFRCTZAu5CnNfBd5qOMYhWdn67nJBBu34/TkD++eeFmd8C9r9jfXJ27+nSiRkSUA==}
     engines: {node: '>= 0.4'}
@@ -3549,14 +3548,6 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
-    dev: true
-
-  /rollup/2.76.0:
-    resolution: {integrity: sha512-9jwRIEY1jOzKLj3nsY/yot41r19ITdQrhs+q3ggNWhr9TQgduHqANvPpS32RNpzGklJu3G1AJfvlZLi/6wFgWA==}
-    engines: {node: '>=10.0.0'}
-    hasBin: true
-    optionalDependencies:
-      fsevents: 2.3.2
     dev: true
 
   /run-parallel/1.2.0:
@@ -3669,6 +3660,21 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       escape-string-regexp: 2.0.0
+    dev: true
+
+  /string-extract-class-names/6.1.0:
+    resolution: {integrity: sha512-HgTdhGe1yeSd8vHaOggh+FRudbBYARSBC2WYW2tngpB4O0PIj4A/xq+DIDQlZUfKnVETEJIjOHYuIczPoMEm4Q==}
+    dependencies:
+      '@babel/runtime': 7.18.6
+      string-left-right: 4.1.0
+    dev: true
+
+  /string-left-right/4.1.0:
+    resolution: {integrity: sha512-ic/WvfNVUygWWsgg8akzSzp2NuttfhrdbH7QmSnda5b5RFmT9aCEDiS/M+gmTJwtFy7+b/2AXU4Z6vejcePQqQ==}
+    dependencies:
+      '@babel/runtime': 7.18.6
+      lodash.clonedeep: 4.5.0
+      lodash.isplainobject: 4.0.6
     dev: true
 
   /string-length/4.0.2:

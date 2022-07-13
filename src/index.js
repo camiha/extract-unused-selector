@@ -31,7 +31,7 @@ var fs = require("fs");
 var glob = require("glob");
 var sass = require("sass");
 var jsdom_1 = require("jsdom");
-var css_tree_1 = require("css-tree");
+var string_extract_class_names_1 = require("string-extract-class-names");
 var getAllClassNameFromHTML = function (input) {
     var target = new jsdom_1.JSDOM(input);
     // TODO: 高級な API を用いず、直接 AST を探索する処理に変更
@@ -47,21 +47,12 @@ var compileScss = function (target) {
     return sass.compileString(target).css;
 };
 exports.compileScss = compileScss;
-// TODO: SCSS AST を直接解析する処理に変更
 var getAllSelectorFromCSS = function (css) {
-    var ast = (0, css_tree_1.parse)(css);
-    // 必要な AST データのみに変換
-    var parsedAST = JSON.parse(JSON.stringify(ast, ['children', 'type', 'prelude', 'name'])).children;
-    // セレクタを保持した中間データを生成
-    // TODO: DFS を用いた実装に変更
-    var selectorWrapper = parsedAST
-        .map(function (cur) {
-        return cur.prelude.children[0].children;
-    })
-        .flat();
-    // 重複なしのセレクタ配列を生成
-    var selectors = __spreadArray([], __read(new Set(selectorWrapper.map(function (current) { return current.name; }))), false).sort();
-    return selectors;
+    var selectors = (0, string_extract_class_names_1.extract)(css).res;
+    var result = Array.from(new Set(selectors))
+        .map(function (current) { return current.split('.')[1]; })
+        .sort();
+    return result;
 };
 exports.getAllSelectorFromCSS = getAllSelectorFromCSS;
 var main = function () {

@@ -3,25 +3,7 @@ import * as fs from 'fs';
 import * as glob from 'glob';
 import * as sass from 'sass';
 import { JSDOM } from 'jsdom';
-import { parse } from 'css-tree';
-
-type ParsedCssAST = {
-  type: string;
-  prelude: {
-    type: string;
-    children: [
-      {
-        type: string;
-        children: [
-          {
-            type: string;
-            name: string;
-          },
-        ];
-      },
-    ];
-  };
-};
+import { extract } from 'string-extract-class-names';
 
 export const getAllClassNameFromHTML = (input: string): string[] => {
   const target = new JSDOM(input);
@@ -41,29 +23,13 @@ export const getAllClassNameFromHTML = (input: string): string[] => {
 export const compileScss = (target: string): string =>
   sass.compileString(target).css;
 
-// TODO: SCSS AST を直接解析する処理に変更
 export const getAllSelectorFromCSS = (css: string): string[] => {
-  const ast = parse(css);
+  const selectors = extract(css).res;
+  const result = Array.from(new Set(selectors))
+    .map((current) => current.split('.')[1])
+    .sort();
 
-  // 必要な AST データのみに変換
-  const parsedAST: ParsedCssAST[] = JSON.parse(
-    JSON.stringify(ast, ['children', 'type', 'prelude', 'name']),
-  ).children;
-
-  // セレクタを保持した中間データを生成
-  // TODO: DFS を用いた実装に変更
-  const selectorWrapper = parsedAST
-    .map((cur) => {
-      return cur.prelude.children[0].children;
-    })
-    .flat();
-
-  // 重複なしのセレクタ配列を生成
-  const selectors = [
-    ...new Set(selectorWrapper.map((current) => current.name)),
-  ].sort();
-
-  return selectors;
+  return result;
 };
 
 const main = () => {
