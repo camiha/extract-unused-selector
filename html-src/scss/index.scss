@@ -1,0 +1,30 @@
+.home-inner {
+  padding: 2rem;
+}
+
+.home-item-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.home-item {
+  margin: 0 auto;
+  max-width: 60rem;
+
+  &.-blue {
+    background-color: blue;
+  }
+
+  &.-red {
+    background-color: red;
+  }
+}
+
+.hello-world {
+  margin-top: 1rem;
+}
+
+.not-class {
+  margin-top: 1rem;
+}
