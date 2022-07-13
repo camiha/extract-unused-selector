@@ -4,6 +4,7 @@
  */
 
 export default {
+  // Polyfill for encoding which isn't present globally in jsdom
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 

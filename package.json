@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "npx tsc ./src/index.ts --downlevelIteration",
-    "ext": "node src/index.js",
+    "ext": "ts-node src/index.ts",
     "test": "jest src/index.test.ts"
   },
   "keywords": [],
