@@ -7,7 +7,7 @@
     "dev": "ts-node src/index.ts",
     "test": "jest src/index.test.ts",
     "build": "tsc src/index.ts --outDir build --downlevelIteration",
-    "ext": "node build/index.ts"
+    "ext": "node build/index.js"
   },
   "keywords": [],
   "author": "",
