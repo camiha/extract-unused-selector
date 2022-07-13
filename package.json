@@ -4,9 +4,10 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "build": "npx tsc ./src/index.ts --downlevelIteration",
-    "ext": "ts-node src/index.ts",
-    "test": "jest src/index.test.ts"
+    "dev": "ts-node src/index.ts",
+    "test": "jest src/index.test.ts",
+    "build": "tsc src/index.ts --outDir build --downlevelIteration",
+    "ext": "node build/index.ts"
   },
   "keywords": [],
   "author": "",
