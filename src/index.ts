@@ -18,7 +18,10 @@ const main = () => {
     console.error('unknown input.');
     process.exit(1);
   }
-  if (secondArg.split('.')[-1] === 'css') {
+  if (
+    secondArg.split('.')[-1] === 'scss' ||
+    secondArg.split('.')[-1] === 'css'
+  ) {
     console.error('unsupported format.');
     process.exit(1);
   }
@@ -38,7 +41,6 @@ const main = () => {
   // CSS Selector のみに存在するデータの配列を生成
   const result = getNotExist(htmlSelectorList, cssSelectorList);
 
-  // return result;
   console.log(result);
 };
 
