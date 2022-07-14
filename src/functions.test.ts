@@ -1,11 +1,11 @@
 import {
-  getAllClassFromHTML,
-  getAllClassFromCSS,
+  getAllHTMLSelectors,
+  getAllCSSSelectors,
   getNotExist,
 } from './functions';
 
-describe('getAllClassFromHTML', () => {
-  test('getAllClassFromHTML - unit test', () => {
+describe('getAllHTMLSelectors', () => {
+  test('getAllHTMLSelectors - unit test', () => {
     const input = `
     <!DOCTYPE html>
     <html lang="en">
@@ -43,14 +43,14 @@ describe('getAllClassFromHTML', () => {
       'home-item-container',
       'home-item',
     ].sort();
-    const result = getAllClassFromHTML(input);
+    const result = getAllHTMLSelectors(input);
 
     expect(result).toEqual(expectResult);
   });
 });
 
-describe('getAllClassFromCSS', () => {
-  test('getAllClassFromCSS - unit test', () => {
+describe('getAllCSSSelectors', () => {
+  test('getAllCSSSelectors - unit test', () => {
     const input = `
   .home-inner {
     padding: 2rem;
@@ -65,14 +65,6 @@ describe('getAllClassFromCSS', () => {
   .home-item {
     margin: 0 auto;
     max-width: 60rem;
-
-    &.-blue {
-      background-color: blue;
-    }
-
-    &.-red {
-      background-color: red;
-    }
   }
 
   .hello-world {
@@ -85,15 +77,13 @@ describe('getAllClassFromCSS', () => {
   `;
 
     const expectResult = [
-      'home-inner',
-      'home-item-container',
-      'home-item',
-      '-blue',
-      '-red',
-      'hello-world',
-      'not-class',
+      '.home-inner',
+      '.home-item-container',
+      '.home-item',
+      '.hello-world',
+      '.not-class',
     ].sort();
-    const result = getAllClassFromCSS(input);
+    const result = getAllCSSSelectors(input);
 
     expect(result).toEqual(expectResult);
   });

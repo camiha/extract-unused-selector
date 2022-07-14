@@ -4,36 +4,42 @@ global.TextEncoder = TextEncoder;
 // @ts-ignore next-line
 global.TextDecoder = TextDecoder;
 
-import * as sass from 'sass';
 import { JSDOM } from 'jsdom';
-import { extract } from 'string-extract-class-names';
+import postcss from 'postcss';
 
-export const getAllClassFromHTML = (input: string): string[] => {
+export const getAllHTMLSelectors = (input: string): string[] => {
   const target = new JSDOM(input);
 
-  // TODO: 高級な API を用いず、直接 AST を探索する処理に変更
   const allQuery = Array.from(target.window.document.querySelectorAll('*'));
-  const allClassList = new Set(
+  const selectors = new Set(
     allQuery.reduce((acc, cur) => {
       return [...acc, ...Array.from(cur.classList)];
     }, [] as string[]),
   );
 
-  const result = [...allClassList].sort();
+  const result = [...selectors].sort();
   return result;
 };
 
-export const getAllClassFromCSS = (css: string): string[] => {
-  const extracted = extract(css).res;
-  const result = Array.from(new Set(extracted))
-    .map((current) => current.split('.')[1])
-    .sort();
+export const getAllCssSelectors = (css: string): string[] => {
+  const ast = postcss.parse(css);
+  const selectors: string[] = [];
+  ast.walkRules((rule) => {
+    selectors.push(rule.selector);
+  });
+
+  const result = [...new Set(selectors)].sort();
+  return result;
+};
+
+export const getAllScssTopSelectors = (scss: string): string[] => {
+  const selectors = getAllCssSelectors(scss);
+  const result = selectors.filter(
+    (current) => current.charAt(0) === '.' || current.charAt(0) === '#',
+  );
 
   return result;
 };
 
 export const getNotExist = (original: string[], check: string[]) =>
   check.filter((index) => original.indexOf(index) === -1);
-
-export const compileScss = (target: string): string =>
-  sass.compileString(target).css;

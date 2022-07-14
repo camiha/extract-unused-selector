@@ -39,21 +39,21 @@ var main = function () {
         console.error('unknown input.');
         process.exit(1);
     }
-    if (secondArg.split('.')[-1] === 'scss') {
+    if (secondArg.split('.')[-1] === 'css') {
         console.error('unsupported format.');
         process.exit(1);
     }
     var htmlDir = firstArg;
-    var scss = fs.readFileSync(secondArg, 'utf-8');
-    var css = (0, functions_1.compileScss)(scss);
+    var css = fs.readFileSync(secondArg, 'utf-8');
     var htmlFilesPath = glob.sync(path.resolve(htmlDir) + '/**/*.+' + '(html)');
     var htmlFiles = htmlFilesPath.map(function (path) { return fs.readFileSync(path, 'utf-8'); });
     var htmlSelectorList = htmlFiles.reduce(function (acc, cur) {
-        return __spreadArray(__spreadArray([], __read(acc), false), __read((0, functions_1.getAllClassFromHTML)(cur)), false);
+        return __spreadArray(__spreadArray([], __read(acc), false), __read((0, functions_1.getAllHTMLSelectors)(cur)), false);
     }, []);
-    var cssSelectorList = (0, functions_1.getAllClassFromCSS)(css);
+    var cssSelectorList = (0, functions_1.getAllScssTopSelectors)(css);
     // CSS Selector のみに存在するデータの配列を生成
     var result = (0, functions_1.getNotExist)(htmlSelectorList, cssSelectorList);
+    // return result;
     console.log(result);
 };
 main();
