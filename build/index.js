@@ -39,7 +39,8 @@ var main = function () {
         console.error('unknown input.');
         process.exit(1);
     }
-    if (secondArg.split('.')[-1] === 'css') {
+    if (secondArg.split('.')[-1] === 'scss' ||
+        secondArg.split('.')[-1] === 'css') {
         console.error('unsupported format.');
         process.exit(1);
     }
@@ -53,7 +54,6 @@ var main = function () {
     var cssSelectorList = (0, functions_1.getAllScssTopSelectors)(css);
     // CSS Selector のみに存在するデータの配列を生成
     var result = (0, functions_1.getNotExist)(htmlSelectorList, cssSelectorList);
-    // return result;
     console.log(result);
 };
 main();

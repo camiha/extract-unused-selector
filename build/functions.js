@@ -54,8 +54,9 @@ var getAllCssSelectors = function (css) {
 };
 exports.getAllCssSelectors = getAllCssSelectors;
 var getAllScssTopSelectors = function (scss) {
-    var selectors = (0, exports.getAllCssSelectors)(scss);
-    var result = selectors.filter(function (current) { return current.charAt(0) === '.' || current.charAt(0) === '#'; });
+    var rawSelectors = (0, exports.getAllCssSelectors)(scss);
+    var selectors = rawSelectors.filter(function (current) { return current.charAt(0) === '.' || current.charAt(0) === '#'; });
+    var result = selectors.map(function (current) { return current.slice(1); });
     return result;
 };
 exports.getAllScssTopSelectors = getAllScssTopSelectors;
