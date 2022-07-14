@@ -33,10 +33,11 @@ export const getAllCssSelectors = (css: string): string[] => {
 };
 
 export const getAllScssTopSelectors = (scss: string): string[] => {
-  const selectors = getAllCssSelectors(scss);
-  const result = selectors.filter(
+  const rawSelectors = getAllCssSelectors(scss);
+  const selectors = rawSelectors.filter(
     (current) => current.charAt(0) === '.' || current.charAt(0) === '#',
   );
+  const result = selectors.map((current) => current.slice(1));
 
   return result;
 };
