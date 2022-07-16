@@ -11,14 +11,6 @@
 .home-item {
   margin: 0 auto;
   max-width: 60rem;
-
-  &.-blue {
-    background-color: blue;
-  }
-
-  &.-red {
-    background-color: red;
-  }
 }
 
 .hello-world {
